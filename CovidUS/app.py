@@ -18,7 +18,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-class Feedback(db.Model):
+class uscases(db.Model):
     __tablename__ = 'covid_us_county'
     fips = db.Column(db.Integer, primary_key=True)
     county = db.Column(db.String(200), unique=True)
@@ -27,6 +27,8 @@ class Feedback(db.Model):
     long = db.Column(db.Integer)
     cases = db.Column(db.Integer)
     deaths = db.Column(db.Integer)
+    status = db.Column(db.String(200))
+    details = db.Column(db.String)
 
     def __init__(self, county, state, lat, long, cases, deaths):
         self.county = county
