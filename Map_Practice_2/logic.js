@@ -19,46 +19,29 @@ Plotly.d3.csv('us_county.csv', function (err, rows) {
         //     [0.4, 'rgb(188,189,220)'], [0.6, 'rgb(158,154,200)'],
         //     [0.8, 'rgb(117,107,177)'], [1, 'rgb(84,39,143)']
         // ],
-        autocolorscale: true
-        // colorbar: {
-        //     title: 'Population',
-        //     thickness: 0.2
-        // },
-        // marker: {
-        //     line:{
-        //         color: 'rgb(255,255,255)',
-        //         width: 2
-        //     }
-        // }
+        autocolorscale: true,
+        colorbar: {
+            title: 'Population',
+            thickness: 0.2
+        },
+        marker: {
+            line:{
+                color: 'rgb(255,255,255)',
+                width: 2
+            }
+        }
     }];
 
     console.log(data)
 
-    //     var layout = {
-    //         title: 'Population by State',
-    //         geo:{
-    //             scope: 'usa',
-    //             showlakes: true,
-    //             lakecolor: 'rgb(255,255,255)'
-    //         }
-    //     };
+        var layout = {
+            title: 'Population by State',
+            geo:{
+                scope: 'usa',
+                showlakes: true,
+                lakecolor: 'rgb(255,255,255)'
+            }
+        };
 
-    //     Plotly.newPlot("myDiv", data, layout, {showLink: false});
-    // })
-
-    var layout = {
-        title: '2014 US Popultaion by State',
-        geo: {
-            scope: 'usa',
-            countrycolor: 'rgb(255, 255, 255)',
-            showland: true,
-            landcolor: 'rgb(217, 217, 217)',
-            showlakes: true,
-            lakecolor: 'rgb(255, 255, 255)',
-            subunitcolor: 'rgb(255, 255, 255)',
-            lonaxis: {},
-            lataxis: {}
-        }
-    };
-    Plotly.newPlot("myDiv", data, layout, { showLink: false });
+        Plotly.newPlot("myDiv", data, layout, {showLink: false});
 });
