@@ -1,0 +1,59 @@
+<head>
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+​
+
+<body>
+    <div id='myDiv'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <script>
+        Plotly.d3.json('/dbscrape',
+            function (err, rows) {
+                function unpack(rows, key) {
+                    return rows.map(function (row) {
+                        return row[key];
+                    })
+                };
+
+                var cityCounty = unpack(rows, 'county')
+                var cityLat = unpack(rows, 'lat')
+                var cityLon = unpack(rows, 'long')
+                var cityPop = unpack(rows, 'population')
+                // for (var i = 0; i < cityPop.length; i++) {
+                // 	// var currentSize = cityPop[i] / scale;
+                // 	// var currentText = cityName[i] + " pop: " + cityPop[i];
+                // 	// citySize.push(currentSize);
+                // 	// hoverText.push(currentText);
+                // }
+                var currentText = cityCounty + " pop: " + cityPop;
+                var data = [{
+
+                    lon: cityLon,
+                    lat: cityLat,
+                    radius: 10,
+                    z: cityPop,
+                    type: "densitymapbox",
+                    coloraxis: 'coloraxis',
+                    // text: currentText
+                    //   hoverinfo: 'skip'
+                }];
+
+                var layout = {
+                    mapbox: {
+                        center: { lon: -100, lat: 40 },
+                        style: "outdoors", zoom: 2
+                    },
+                    coloraxis: { colorscale: "Viridis" },
+                    title: { text: "Population Magnitude" },
+                    width: 600, height: 400, margin: { t: 30, b: 0 }
+                };
+
+                var config = { mapboxAccessToken: "pk.eyJ1IjoiYnVlemVva29zZSIsImEiOiJja2VhbGQ1cm4wMXBwMnhwbHNsbWwwbDJxIn0.4xB6giE5865tbd5P9wwkrA" };
+
+                Plotly.newPlot('myDiv', data, layout, config);
+            })
+
+    </script>
+</body>

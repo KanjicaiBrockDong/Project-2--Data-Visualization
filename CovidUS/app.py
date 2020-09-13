@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, jsonify, redirect
 from flask_sqlalchemy import SQLAlchemy
+import json
+import collections
+import psycopg2
 
 app = Flask(__name__)
 
@@ -59,6 +62,7 @@ class CovidDemo(db.Model):
         self.population = population
 
 
+@app.route('/')
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
@@ -74,32 +78,45 @@ def dataentry():
     return render_template('dataentry.html')
 
 
-@app.route('/dbscrape')
+@app.route('/dbscrape', methods=["GET", 'POST'])
 def dbscrape():
-    results = db.session.query(Covid.county, Covid.lat, Covid.long).all()
+    results = db.session.query(
+        Covid.state, Covid.county, Covid.lat, Covid.long, Covid.cases, Covid.deaths).all()
 
-    hover_text = [result[0] for result in results]
-    lat = [result[1] for result in results]
-    long = [result[2] for result in results]
 
-    covid_data = [{
-        "type": "scattergeo",
-        "locationmode": "USA-states",
-        "lat": lat,
-        "long": long,
-        "text": hover_text,
-        "hoverinfo": "text",
-        "marker": {
-            "size": 15,
-            "line": {
-                "color": "rgb(8,8,8)",
-                "width": 1
-            },
-        }
-    }]
+    covid_data = []
+    for result in results:
+      d = collections.OrderedDict()
+      d["state"] = result[0]
+      d["county"] = result[1]
+      d["lat"] = result[2]
+      d["long"] = result[3]
+      d["cases"] = result[4]
+      d["deaths"] = result[5]
+      covid_data.append(d)
+    covid_json = json.dumps(covid_data)
+    with open("static/js/covid_data.js", "w") as f:
+       f.write(covid_json)
+    # state = [result[0] for result in results]
+    # county = [result[1] for result in results]
+    # lat = [result[2] for result in results]
+    # long = [result[3] for result in results]
+    # cases = [result[4] for result in results]
+    # deaths = [result[5] for result in results]
 
+    # covid_data = [{
+    # "0_state": state,
+    # "1_county": county,
+    # "2_lat": lat,
+    # "3_long": long,
+    # "4_cases": cases,
+    # "5_deaths": deaths
+    # }]
+
+# print(covid_data)
     return jsonify(covid_data)
 
 
+# dbscrape()
 if __name__ == '__main__':
     app.run()

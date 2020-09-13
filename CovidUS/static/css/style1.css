@@ -11,12 +11,12 @@
   }
   
   /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
-  .wrapper {
+  /* .wrapper {
     position: relative;
     min-height: 100%;
     padding-bottom: 130px;
     overflow: auto;
-  }
+  } */
   
   /* The footer is positioned at the bottom of the page */
   .footer {
@@ -171,6 +171,17 @@
   
     #table-area td {
       font-size: 1.25em;
+    }
+
+    #map::after {
+      position: absolute;
+      top: 50px;
+      left: 300px;
+      z-index: -1;
+      display: block;
+      width: 200px;
+      height: 100px;
+      content: " ";
     }
   
     #table-area tbody td {
