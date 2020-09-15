@@ -11,23 +11,14 @@ Plotly.d3.json("/dbscrape",
     var cityLat = unpack(rows, 'lat')
     var cityLon = unpack(rows, 'long')
     var cityPop = unpack(rows, 'cases')
-    // for (var i = 0; i < cityPop.length; i++) {
-    // 	// var currentSize = cityPop[i] / scale;
-    // 	// var currentText = cityName[i] + " pop: " + cityPop[i];
-    // 	// citySize.push(currentSize);
-    // 	// hoverText.push(currentText);
-    // }
-    var currentText = cityCounty + " pop: " + cityPop;
-    var data = [{
+    var data1 = [{
 
       lon: cityLon,
       lat: cityLat,
-      radius: 500,
+      radius: 30,
       z: cityPop,
       type: "densitymapbox",
       coloraxis: 'coloraxis',
-      // text: currentText
-      //   hoverinfo: 'skip'
     }];
 
     var layout = {
@@ -36,63 +27,103 @@ Plotly.d3.json("/dbscrape",
         style: "outdoors", zoom: 2
       },
       coloraxis: { colorscale: "Viridis" },
-      title: { text: "US COVID CASES HEATMAP" },
-      width: 1000, height: 400, margin: { t: 30, b: 0 }
+      title: { text: "US COVID CASES HEAT MAP" },
+      width: 1300, height: 400, margin: { t: 100, b: 0 }
     };
 
     var config = { mapboxAccessToken: "pk.eyJ1IjoiYnVlemVva29zZSIsImEiOiJja2VhbGQ1cm4wMXBwMnhwbHNsbWwwbDJxIn0.4xB6giE5865tbd5P9wwkrA" };
 
-    Plotly.newPlot('map', data, layout, config);
+    Plotly.newPlot('map1', data1, layout, config);
   })
+
+// code for bubble map
+Plotly.d3.json("/dbscrape", function (err, rows) {
+  function unpack(rows, key) {
+    return rows.map(function (row) { return row[key]; });
+  }
+  var cityName = unpack(rows, 'county'),
+    cityLat = unpack(rows, 'lat'),
+    cityLon = unpack(rows, 'long'),
+    cityDeath = unpack(rows, 'deaths'),
+    color = [, "rgb(255,65,54)", "rgb(133,20,75)", "rgb(255,133,27)", "lightgrey"],
+    citySize = [],
+    hoverText = [],
+    scale = 150;
+  for (var i = 0; i < cityDeath.length; i++) {
+    var currentSize = cityDeath[i] / scale;
+    var currentText = cityName[i] + " County Death: " + cityDeath[i];
+    citySize.push(currentSize);
+    hoverText.push(currentText);
+  }
+  var data2 = [{
+    type: 'scattergeo',
+    locationmode: 'USA-states',
+    lat: cityLat,
+    lon: cityLon,
+    hoverinfo: 'text',
+    text: hoverText,
+    marker: {
+      size: citySize,
+      color: 'red',
+      line: {
+        color: 'black',
+        width: 2
+      },
+    }
+  }];
+  var layout = {
+    title: 'US COVID DEATHS BUBBLE MAP',
+    showlegend: false,
+    geo: {
+      scope: 'usa',
+      showland: true,
+      landcolor: 'rgb(217, 217, 217)',
+      subunitwidth: 1,
+      countrywidth: 1,
+      subunitcolor: 'rgb(255,255,255)',
+      countrycolor: 'rgb(255,255,255)'
+    },
+    width: 1300, height: 400
+  };
+  Plotly.newPlot("map2", data2, layout, { showLink: false });
+})
 // ################################################################################
 
-// from data.js 
-// var data = d3.json("/static/js/covid_data.js").then(function(test) {
-//   console.log(test[0]);
-// })
-// data = JSON.parse(data)
-// var tableData = data
-
-// var url = "/dbscrape"
 var tableData = data
 
-// get tbody refernce  
 tbody = d3.select('tbody')
 
-
-// use Object.entries to get the data and loop through then insert to html table
-
 function displayData(data) {
-    tbody.text('')
-    data.forEach(function (tableView) {
-      newRow = tbody.append('tr')
-      Object.entries(tableView).forEach(function ([key, value]) {
-        newTd = newRow.append('td').text(value)
-      })
+  tbody.text('')
+  data.forEach(function (tableView) {
+    newRow = tbody.append('tr')
+    Object.entries(tableView).forEach(function ([key, value]) {
+      newTd = newRow.append('td').text(value)
     })
-  }
+  })
+}
 
 displayData(tableData)
 
-//select user input and search button
-var stateForm = d3.select('#select-state')
-var button = d3.select('filter-btn')
+var filterButton = d3.select('#filter-btn')
 
+filterButton.on('click', function () {
 
-// search data with date inputs
-function clickSelect() {
-    //don't refresh the page! 
-    d3.event.preventDefault()
-    //print the value that was input 
-    console.log(stateForm.property('value'))
-    //create a new table with the filterd data only    
-     var newTable = tableData.filter(tableView => tableView.select-state === stateForm.property('value')) 
+  tbody.html('')
 
-    displayData(newTable)
-}
+  var State = d3.select('#select-state').property('value')
+  var County = d3.select('#select-county').property('value')
 
-// event handler
-stateForm.on('change', clickSelect) 
+  if (State) { searchResults = tableData.filter(search => search.state === State) }
+  else if (County) { searchResults = tableData.filter(search => search.county === County) }
 
+  searchResults.forEach((MSC) => {
+    var row = tbody.append('tr')
+    Object.entries(MSC).forEach(([key, value]) => {
+      var cell = row.append('td')
+      cell.text(value)
+    })
+  })
 
-// ###########################################################################
+})
+
