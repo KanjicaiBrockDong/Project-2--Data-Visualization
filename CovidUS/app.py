@@ -97,26 +97,9 @@ def dbscrape():
     covid_json = json.dumps(covid_data)
     with open("static/js/covid_data.js", "w") as f:
        f.write(covid_json)
-    # state = [result[0] for result in results]
-    # county = [result[1] for result in results]
-    # lat = [result[2] for result in results]
-    # long = [result[3] for result in results]
-    # cases = [result[4] for result in results]
-    # deaths = [result[5] for result in results]
-
-    # covid_data = [{
-    # "0_state": state,
-    # "1_county": county,
-    # "2_lat": lat,
-    # "3_long": long,
-    # "4_cases": cases,
-    # "5_deaths": deaths
-    # }]
 
 # print(covid_data)
     return jsonify(covid_data)
 
-
-# dbscrape()
 if __name__ == '__main__':
     app.run()
