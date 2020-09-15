@@ -6,14 +6,14 @@ import psycopg2
 
 app = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root123@localhost/CovidUS'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://lqxeinbkfozxvs:6c597680227e0e3138aacaf80145a30216a1fa3edbb1bc821e85d267652fcfe7@ec2-52-72-34-184.compute-1.amazonaws.com:5432/d6ok93kjp27c0q'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
