@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>COVID-19 CASES IN THE USA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style1.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <input class="MyButton" type="button" value="Data Entry" 
+      onclick="window.location.href='/dataentry'" />
+      <div class="navbar-header">
+        <img src="../static/css/images.jfif" alt="covid" class="logo" />
+        <h1>COVID CASES IN USA</h1>
+      </div>
+      </a>
+  </nav>
+  </div>
+  <div id="map2"></div>
+  </div>
+  <div id="map1"></div>
+  <div class="container">
+    <h1>COVID CASES IN USA</h1>
+    <h3>(End of August 2020) </h3>
+    <div class="row margin-top-50">
+      <div class="col-md-2">
+        <aside class="filters">
+          <div class="panel panel-default">
+            <div class="panel-heading">Search Options</div>
+            <div class="panel-body">
+              <form>
+                <div class="form-group">
+                  <ul class="list-group" id="filters">
+                    <li class="filter list-group-item">
+                      <label for="state">State</label>
+                      <input class="form-control" id="select-state" type="text" placeholder="      ">
+                      <label for="county">County</label>
+                      <input class="form-control" id="select-county" type="text" placeholder="      ">
+                  </ul>
+                </div>
+                <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+                <button id="reset" class="btn btn-default">Clear Search</button>
+              </form>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <div class="col-md-8">
+        <div id="table-area" class="">
+          <table id="covid-table" class="table table-striped">
+            <thead>
+              <tr>
+                <th class="table-head">state</th>
+                <th class="table-head">county</th>
+                <th class="table-head">lat</th>
+                <th class="table-head">long</th>
+                <th class="table-head">cases</th>
+                <th class="table-head">deaths</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="static/js/covid_data_1.js"></script>
+    <script src="static/js/app.js"></script>
+</body>
+
+</html>

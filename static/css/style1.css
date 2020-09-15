@@ -1,0 +1,235 @@
+* {
+    box-sizing: border-box;
+    font-family: Ubuntu, sans-serif;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .MyButton {
+    width: 300px;
+    padding: 10px;
+    top: 10;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 200%;
+    background: #cc6333;
+    color: #fff;
+    border: 1px solid #3366CC;
+    border-radius: 10px;
+    }
+    input.MyButton:hover {
+    color: #FFFF00;
+    background: #000;
+    border: 1px solid #fff;
+    }
+
+  .footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 100px;
+    background: #4e5d6c;
+  }
+  
+  
+  .footer > .bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    background: #1b3146;
+  }
+  
+  .navbar {
+    padding: 20px;
+    margin:  0;
+  }
+  
+  
+  .nav-covid {
+    position: absolute;
+    bottom: 5px;
+    left: 100px;
+    width: 10px;
+    color: white;
+  }
+  
+  
+  .covid-form {
+    margin-top: 50px;
+  }
+  
+  .filters .panel-body {
+    padding: 0;
+  }
+  
+  .filters {
+    margin-top: 10px;
+  }
+  
+  select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    color: #8e979f;
+    outline: none;
+  }
+  
+  #table-area th {
+    text-align: center;
+  }
+  
+  #table-area th:first-child,
+  #table-area th:nth-child(2),
+  #table-area th:nth-child(6) {
+    min-width: 70px;
+  }
+  
+  .loader {
+    margin-top: 50px;
+  }
+  
+  .margin-top-50 {
+    margin-top: 50px;
+  }
+  
+  
+  .hero {
+    position: relative;
+    height: 200px;
+    padding: 20px;
+    margin: 0;
+    background: black;
+    background-image: url("https://phil.cdc.gov/Details.aspx?pid=21074");
+    background-attachment: fixed;
+    background-position: top center;
+    background-size: cover;
+  }
+  
+  .hero h1 {
+    margin-top: 200px;
+    font-size: 0.1rem;
+    animation: title 1.2s forwards linear;
+  }
+  
+  .hero p {
+    font-size: 2rem;
+    opacity: 0;
+    animation: subtitle 1.2s forwards linear;
+    animation-delay: 1.2s;
+  }
+  
+  
+  .form-control::-webkit-input-placeholder {
+    
+    color: #8e979f;
+  }
+  
+  .form-control::-moz-placeholder {
+
+    color: #8e979f;
+  }
+  
+  .form-control:-ms-input-placeholder {
+  
+    color: #8e979f;
+  }
+  
+  .form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: #8e979f;
+  }
+  
+  
+  @media (max-width: 800px) {
+    #table-area td {
+      font-size: 1em;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    #table-area thead {
+      display: none;
+    }
+  
+    #table-area tr td:first-child {
+      font-size: 1.8em;
+      font-weight: bold;
+      background: #1b3146;
+    }
+  
+    #table-area tr td:last-child {
+      margin-bottom: 20px;
+    }
+  
+    #table-area tr td:last-child::after {
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin-top: 20px;
+      content: " ";
+      background: aliceblue;
+    }
+  
+    #table-area td {
+      font-size: 1.25em;
+    }
+  
+    #table-area tbody td {
+      display: block;
+      text-align: center;
+    }
+  
+    #table-area tbody td::before {
+      display: block;
+      font-size: 1.4em;
+      font-weight: bold;
+      text-align: center;
+      content: attr(data-th);
+    }
+  
+    .hero h1 {
+      animation: smaller-title 1.2s forwards linear;
+    }
+  }
+  
+  
+  @keyframes title {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      font-size: 7.5rem;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes smaller-title {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      font-size: 5.5rem;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes subtitle {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
