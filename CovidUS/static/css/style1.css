@@ -10,15 +10,24 @@
     margin: 0;
   }
   
-  /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
-  /* .wrapper {
-    position: relative;
-    min-height: 100%;
-    padding-bottom: 130px;
-    overflow: auto;
-  } */
-  
-  /* The footer is positioned at the bottom of the page */
+  .MyButton {
+    width: 300px;
+    padding: 10px;
+    top: 10;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 200%;
+    background: #cc6333;
+    color: #fff;
+    border: 1px solid #3366CC;
+    border-radius: 10px;
+    }
+    input.MyButton:hover {
+    color: #FFFF00;
+    background: #000;
+    border: 1px solid #fff;
+    }
+
   .footer {
     position: absolute;
     right: 0;
@@ -39,8 +48,8 @@
   }
   
   .navbar {
-    padding: 5px;
-    margin: 0;
+    padding: 20px;
+    margin:  0;
   }
   
   
@@ -94,13 +103,13 @@
   
   .hero {
     position: relative;
-    height: 550px;
+    height: 200px;
     padding: 20px;
     margin: 0;
     background: black;
     background-image: url("https://phil.cdc.gov/Details.aspx?pid=21074");
     background-attachment: fixed;
-    background-position: bottom center;
+    background-position: top center;
     background-size: cover;
   }
   
@@ -117,19 +126,19 @@
     animation-delay: 1.2s;
   }
   
-  /* input placeholder color changes */
+  
   .form-control::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
+    
     color: #8e979f;
   }
   
   .form-control::-moz-placeholder {
-    /* Firefox 19+ */
+
     color: #8e979f;
   }
   
   .form-control:-ms-input-placeholder {
-    /* IE 10+ */
+  
     color: #8e979f;
   }
   
@@ -171,17 +180,6 @@
   
     #table-area td {
       font-size: 1.25em;
-    }
-
-    #map::after {
-      position: absolute;
-      top: 50px;
-      left: 300px;
-      z-index: -1;
-      display: block;
-      width: 200px;
-      height: 100px;
-      content: " ";
     }
   
     #table-area tbody td {
