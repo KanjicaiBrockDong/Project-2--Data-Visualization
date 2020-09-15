@@ -86,7 +86,6 @@ scipy==1.4.1
 seaborn==0.10.1
 selenium==3.141.0
 Send2Trash==1.5.0
-sip==4.19.13
 six==1.14.0
 soupsieve==2.0.1
 splinter==0.14.0
