@@ -27,7 +27,7 @@ Plotly.d3.json("/dbscrape",
         style: "outdoors", zoom: 2
       },
       coloraxis: { colorscale: "Viridis" },
-      title: { text: "US COVID CASES HEAT MAP" },
+      title: { text: "US COVID CASES MAP" },
       width: 1300, height: 400, margin: { t: 100, b: 0 }
     };
 
@@ -45,7 +45,7 @@ Plotly.d3.json("/dbscrape", function (err, rows) {
     cityLat = unpack(rows, 'lat'),
     cityLon = unpack(rows, 'long'),
     cityDeath = unpack(rows, 'deaths'),
-    color = [, "rgb(255,65,54)", "rgb(133,20,75)", "rgb(255,133,27)", "lightgrey"],
+    color = ["rgb(255,65,54)", "rgb(133,20,75)", "rgb(255,133,27)", "lightgrey"],
     citySize = [],
     hoverText = [],
     scale = 150;
@@ -72,7 +72,7 @@ Plotly.d3.json("/dbscrape", function (err, rows) {
     }
   }];
   var layout = {
-    title: 'US COVID DEATHS BUBBLE MAP',
+    title: 'US COVID DEATHS MAP',
     showlegend: false,
     geo: {
       scope: 'usa',

@@ -14,6 +14,7 @@ if ENV == 'dev':
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xupkibosgivfps:418e9ef9d6aa15cd455dde098fc0b08387fad3c09e375a90b76fbcaf1ff8e9a8@ec2-54-157-234-29.compute-1.amazonaws.com:5432/d2fo3kgmimlsfp'
+    
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -93,12 +94,15 @@ def dbscrape():
       d["long"] = result[3]
       d["cases"] = result[4]
       d["deaths"] = result[5]
+      
+
+
       covid_data.append(d)
     covid_json = json.dumps(covid_data)
     with open("static/js/covid_data.js", "w") as f:
        f.write(covid_json)
 
-# print(covid_data)
+#  print(covid_data)
     return jsonify(covid_data)
 
 if __name__ == '__main__':
