@@ -18,7 +18,10 @@ Github
 Go to the github repository 
 https://github.com/KanjicaiBrockDong/Project-2--Data-Visualization  
 run the app.py from git bash window or terminal if you are using mac
-go to the chrome browser use your local host ip address followed by on of the following routes
+go to the chrome browser use your local host ip address followed by on of the following routes:
+
 ‘/’ or ‘/dashboard’ to display the interactive dashboard
+
 ‘/dbscrape’ to retrieve the JSON object
+
 ‘dataentry’ to display the data entry interface
